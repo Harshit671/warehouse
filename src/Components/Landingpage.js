@@ -15,10 +15,10 @@ const Landingpage = () => {
     useEffect(async () => {
         const idata = await showDocument();
         console.log(idata);
-
         setData(idata);
         dispatch(fetchInitialData(idata));
         console.log(idata)
+        console.log(cityFilter(data));
     }, [])
 
     const state = useSelector(state => state.warehouse)

@@ -12,8 +12,9 @@ export const addDocument = async (userName) => {
         }).catch(err => console.error(`Failed to insert item: ${err}`))
 }
 
-
 export const showDocument = async () => {
+    const credentials = Realm.Credentials.anonymous();
+    const user = await app.logIn(credentials);
     const mongodb = app.currentUser.mongoClient("mongodb-atlas")
     const dbcc = mongodb.db("preity").collection("warehouse");
     const showData = await dbcc.find();
@@ -22,10 +23,11 @@ export const showDocument = async () => {
 }
 
 export const updateDocument = async (data, oldData) => {
+    const credentials = Realm.Credentials.anonymous();
+    const user = await app.logIn(credentials);
     const mongodb = app.currentUser.mongoClient("mongodb-atlas")
     const dbcc = mongodb.db("preity").collection("warehouse");
     const query = { "name": oldData.name }
-
     const updateData = await dbcc.updateOne(query,
         { $set: { "name": data.name, "city": data.city, "cluster": data.cluster, "space_available": parseInt(data.space), "is_live": Boolean(data.live) } });
 }
