@@ -44,6 +44,7 @@ select{
   flex-direction: column;
 }
 
-Link, button{
+a, button{
   text-decoration: none;
+  color: white
 }

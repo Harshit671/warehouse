@@ -1,6 +1,6 @@
-
+import Warehouse from '../../warehouse.json'
 const initialState = {
-    warehouse: []
+    warehouse: [Warehouse]
 };
 
 export default function tripReducer(state = initialState, action) {

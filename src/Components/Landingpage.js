@@ -7,10 +7,20 @@ import { fetchFilterData, fetchInitialData, fetchSearchData } from '../store/act
 import { useSelector } from 'react-redux';
 import { cityFilter, clusterFilter, spaceFilter } from '../util';
 import { showDocument } from '../mongo';
+import { Button } from '@mui/material';
 
 const Landingpage = () => {
     const dispatch = useDispatch();
     const [data, setData] = useState([]);
+    useEffect(async () => {
+        const idata = await showDocument();
+        console.log(idata);
+
+        setData(idata);
+        dispatch(fetchInitialData(idata));
+        console.log(idata)
+    }, [])
+
     const state = useSelector(state => state.warehouse)
     const [search, setSearch] = useState("");
     const handleSearch = () => {
@@ -20,12 +30,7 @@ const Landingpage = () => {
         dispatch(fetchSearchData(search === "" ? Warehouse : searchData));
     }
 
-    useEffect(async () => {
-        const idata = await showDocument(Warehouse);
-        console.log(idata)
-        setData(idata);
-        dispatch(fetchInitialData(idata));
-    }, [])
+
 
     const handleFilter = () => {
         const city = document.getElementById("city").value;
@@ -42,8 +47,6 @@ const Landingpage = () => {
         dispatch(fetchFilterData(filteredData))
 
     }
-
-    console.log(state);
     return (
         <>
             <div className="search">
@@ -104,7 +107,7 @@ const Landingpage = () => {
                                 <tr key={index}>
                                     <td>{item.name}</td>
                                     <td>{item.city}</td>
-                                    <td><button><Link to={`/house/${item.code}`}>View</Link></button></td>
+                                    <td><Button variant="contained"><Link to={`/house/${item.code}`}>View</Link></Button></td>
                                 </tr>
                             )
                         })
