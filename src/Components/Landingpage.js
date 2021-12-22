@@ -53,7 +53,7 @@ const Landingpage = () => {
                         <select name="city" id="city">
                             <option vlaue="All">All</option>
                             {
-                                cityFilter().map(item => {
+                                cityFilter(data).map(item => {
                                     return (
                                         <option value={item}>{item}</option>
                                     )
@@ -65,7 +65,7 @@ const Landingpage = () => {
                         <select name="cluster" id="cluster">
                             <option value="All">All</option>
                             {
-                                clusterFilter().map(item => {
+                                clusterFilter(data).map(item => {
                                     return (
                                         <option value={item}>{item}</option>
                                     )
@@ -77,7 +77,7 @@ const Landingpage = () => {
                         <select name="space" id="space">
                             <option value="All">All</option>
                             {
-                                spaceFilter().map(item => {
+                                spaceFilter(data).map(item => {
                                     return (
                                         <option value={item}>{item}</option>
                                     )

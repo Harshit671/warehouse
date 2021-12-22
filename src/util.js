@@ -1,21 +1,20 @@
-import warehouse from './warehouse.json';
 
-export const cityFilter = () => {
-    const cities = [...new Set(warehouse.map(item => {
+export const cityFilter = (data) => {
+    const cities = [...new Set(data.map(item => {
         return item.city;
     }))]
     return cities;
 }
 
-export const clusterFilter = () => {
-    const cluster = [...new Set(warehouse.map(item => {
+export const clusterFilter = (data) => {
+    const cluster = [...new Set(data.map(item => {
         return item.cluster;
     }))]
     return cluster;
 }
 
-export const spaceFilter = () => {
-    const space = [...new Set(warehouse.map(item => {
+export const spaceFilter = (data) => {
+    const space = [...new Set(data.map(item => {
         return item.space_available;
     }))]
     return space;
